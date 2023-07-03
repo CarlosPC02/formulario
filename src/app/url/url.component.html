@@ -1,0 +1,25 @@
+<div mat-dialog-title> Url Formulario</div>
+
+<form [formGroup]="urlForm" (ngSubmit)="onFormSubmit()"> 
+
+    <div mat-dialog-content class="content"> 
+        <div class="row">
+            <mat-form-field appearance="outline">
+                <mat-label>Nombre</mat-label>
+                <input matInput type="text" placeholder="Ej. hola" formControlName ="nombre" required>
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+                <mat-label>Url</mat-label>
+                <input matInput type="url" placeholder="Ej. https://hola.com" formControlName ="url" required>
+            </mat-form-field>
+        </div>
+    </div>
+
+    <div mat-dialog-actions class="action"> 
+
+        <button mat-raised-button type="button" [mat-dialog-close] ="false">Cancelar</button>
+        <button mat-raised-button color="primary" type="submit">{{data ? 'Editar': 'Guardar'}}</button> 
+
+    </div>
+
+</form>
