@@ -4,7 +4,7 @@ import { UrlComponent } from './url/url.component';
 import { VersionComponent } from './version/version.component';
 import { UrlService } from './services/url.service';
 import { VersionService } from './services/version.service';
-
+import { LoginService } from './services/login.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
@@ -18,21 +18,27 @@ export class AppComponent implements OnInit{
   
   title = 'interfaz';
   
-  displayedColumnsUrl: string[] = ['_id', 'nombre', 'url', 'fecha', 'action'];
+  displayedColumnsUrl: string[] = [ 'nombre', 'url', 'fecha', 'action'];
   dataSourceUrl!: MatTableDataSource<any>;
 
-  displayedColumnsVersion: string[] = ['_id', 'nombre', 'version', 'fecha', 'action'];
+  displayedColumnsVersion: string[] = ['nombre', 'version', 'fecha', 'action'];
   dataSourceVersion!: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private _dialog: MatDialog, private _urlService: UrlService, private _versionService: VersionService){
+  constructor(private _dialog: MatDialog, private _urlService: UrlService, private _versionService: VersionService, public loginService: LoginService){
   }
 
   ngOnInit(): void {
     this.getUrlList();
     this.getVersionList();
+    // console.log("TOKEN",this.loginService.getToken())
+  }
+
+  logout(): void {
+    localStorage.removeItem('token');
+    localStorage.removeItem('name'); // Agrega esta línea para eliminar el nombre de usuario
   }
 
   abrirFormUrl(){
@@ -78,9 +84,17 @@ export class AppComponent implements OnInit{
   }
 
   abrirEditFormUrl(data: any){
-    this._dialog.open(UrlComponent, {
+    const dialogRef = this._dialog.open(UrlComponent, {
       data, 
     });
+
+    dialogRef.afterClosed().subscribe({
+      next: (val)=>{
+        if(val){
+          this.getUrlList();
+        }
+      }
+    })
   }
 
 
@@ -129,15 +143,17 @@ export class AppComponent implements OnInit{
   }
 
   abrirEditFormVersion(data: any){
-    this._dialog.open(VersionComponent, {
+    const dialogRef = this._dialog.open(VersionComponent, {
       data, 
     });
+    dialogRef.afterClosed().subscribe({
+      next: (val)=>{
+        if(val){
+          this.getVersionList();
+        }
+      }
+    })
   }
-
-
-
-  
-
 
 
 }

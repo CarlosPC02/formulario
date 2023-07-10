@@ -22,3 +22,87 @@
 .button-separator {
   margin: 0 10px; 
 }
+
+
+
+// /* Estilos generales */
+// body {
+//   font-family: Arial, sans-serif;
+//   margin: 0;
+//   padding: 0;
+// }
+
+// /* Estilos para la barra de herramientas */
+// mat-toolbar {
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   padding: 0 16px;
+//   background-color: #3f51b5;
+//   color: #fff;
+// }
+
+// /* Estilos para los botones en la barra de herramientas */
+// mat-toolbar button {
+//   margin-left: 8px;
+// }
+
+// /* Estilos para el cuerpo principal */
+// .main-body {
+//   padding: 16px;
+// }
+
+// /* Estilos para los títulos */
+// h2 {
+//   margin-bottom: 16px;
+// }
+
+// /* Estilos para los campos de formulario */
+// mat-form-field {
+//   width: 100%;
+// }
+
+// /* Estilos para la tabla */
+// .table-container {
+//   overflow-x: auto;
+// }
+
+// table {
+//   width: 100%;
+//   border-collapse: collapse;
+// }
+
+// th, td {
+//   text-align: left;
+//   padding: 8px;
+//   border-bottom: 1px solid #ddd;
+// }
+
+// /* Estilos para el paginador */
+// mat-paginator {
+//   display: flex;
+//   justify-content: center;
+//   margin-top: 16px;
+// }
+
+// /* Estilos para mensajes de "No hay datos" */
+// .mat-row.mat-no-row, .mat-row.mat-no-row:hover {
+//   color: #999;
+// }
+
+// /* Estilos para íconos en botones */
+// mat-icon {
+//   font-size: 18px;
+// }
+
+// /* Estilos para ajustar elementos en pantallas pequeñas */
+// @media (max-width: 600px) {
+//   mat-toolbar {
+//     flex-direction: column;
+//     text-align: center;
+//   }
+
+//   .main-body {
+//     padding: 8px;
+//   }
+// }

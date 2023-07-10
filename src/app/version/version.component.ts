@@ -9,7 +9,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./version.component.scss']
 })
 
-export class VersionComponent {
+export class VersionComponent implements OnInit {
   versionForm: FormGroup;
 
   constructor(private _fb: FormBuilder, private _versionService : VersionService, private _dialogRef: MatDialogRef<VersionComponent>, @Inject(MAT_DIALOG_DATA) public data:any){

@@ -1,139 +1,152 @@
-<mat-toolbar color="primary">
-  <span>Formularios</span>
-  <span class="example-spacer"></span>
-  <button mat-raised-button (click)="abrirFormUrl()">
-    Agregar Url
-  </button>
-  <span class="button-separator"></span>
-  <button mat-raised-button (click)="abrirFormVersion()">
-    Agregar Version
-  </button> 
-</mat-toolbar>
+<ng-container *ngIf="loginService.isAuthenticated()">
 
-<div class="main-body">
-  <h2>Url</h2>
-  <mat-form-field>
-    <mat-label>Buscar Url</mat-label>
-    <input matInput (keyup)="applyFilterUrl($event)" placeholder="Ex. Mia" #input>
-  </mat-form-field>
-
-  <div class="table-container">
-
-    <table mat-table [dataSource]="dataSourceUrl" matSort>
-
-      <ng-container matColumnDef="_id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
-        <td mat-cell *matCellDef="let rowUrl"> {{rowUrl._id}} </td>
-      </ng-container>
-
-
-      <ng-container matColumnDef="nombre">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-        <td mat-cell *matCellDef="let rowUrl"> {{rowUrl.nombre}} </td>
-      </ng-container>
-
+  <mat-toolbar color="primary">
+    <span>Formularios</span>
+    <span class="example-spacer"></span>
+    <button mat-raised-button (click)="abrirFormUrl()">
+      Agregar Url
+    </button>
+    <span class="button-separator"></span>
+    <button mat-raised-button (click)="abrirFormVersion()">
+      Agregar Version
+    </button>
+    <span class="button-separator"></span>
+    <button mat-raised-button (click)="logout()">
+      Cerrar Sesion
+    </button> 
+  </mat-toolbar>
   
-      <ng-container matColumnDef="url">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Url </th>
-        <td mat-cell *matCellDef="let rowUrl"> {{rowUrl.url}} </td>
-      </ng-container>
-
-  
-      <ng-container matColumnDef="fecha">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
-        <td mat-cell *matCellDef="let rowUrl"> {{rowUrl.fecha}} </td>
-      </ng-container>
-      
-      <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Accion </th>
-        <td mat-cell *matCellDef="let rowUrl"> 
-        <button mat-icon-button color="primary" (click)="abrirEditFormUrl(rowUrl)">
-          <mat-icon>edit</mat-icon>
-        </button>
-
-        <button mat-icon-button color="warn" (click)="deleteUrl(rowUrl._id)">
-          <mat-icon>delete</mat-icon>
-        </button>
-        
-        </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumnsUrl"></tr>
-      <tr mat-row *matRowDef="let rowUrl; columns: displayedColumnsUrl;"></tr>
-
-      <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-      </tr>
-
-    </table>
-
-    
-
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
-    
-    <br>
-
-    <h2>Version</h2>
+  <div class="main-body">
+    <h2>Url</h2>
     <mat-form-field>
-      <mat-label>Buscar Version</mat-label>
-      <input matInput (keyup)="applyFilterVersion($event)" placeholder="Ex. Mia" #input>
+      <mat-label>Buscar Url</mat-label>
+      <input matInput (keyup)="applyFilterUrl($event)" placeholder="Ex. Mia" #inputUrl>
     </mat-form-field>
-
-    <table mat-table [dataSource]="dataSourceVersion" matSort>
-
-      <ng-container matColumnDef="_id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
-        <td mat-cell *matCellDef="let rowVersion"> {{rowVersion._id}} </td>
-      </ng-container>
-
-
-      <ng-container matColumnDef="nombre">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-        <td mat-cell *matCellDef="let rowVersion"> {{rowVersion.nombre}} </td>
-      </ng-container>
-
   
-      <ng-container matColumnDef="version">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Version </th>
-        <td mat-cell *matCellDef="let rowVersion"> {{rowVersion.version}} </td>
-      </ng-container>
-
+    <div class="table-container">
   
-      <ng-container matColumnDef="fecha">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
-        <td mat-cell *matCellDef="let rowVersion"> {{rowVersion.fecha}} </td>
-      </ng-container>
-      
-      <ng-container matColumnDef="action">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Accion </th>
-        <td mat-cell *matCellDef="let rowVersion"> 
-        <button mat-icon-button color="primary" (click)="abrirEditFormVersion(rowVersion)">
-          <mat-icon>edit</mat-icon>
-        </button>
-
-        <button mat-icon-button color="warn" (click)="deleteVersion(rowVersion._id)">
-          <mat-icon>delete</mat-icon>
-        </button>
+      <table mat-table [dataSource]="dataSourceUrl" matSort>
+  
+        <!-- <ng-container matColumnDef="_id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+          <td mat-cell *matCellDef="let rowUrl"> {{rowUrl._id}} </td>
+        </ng-container> -->
+  
+  
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+          <td mat-cell *matCellDef="let rowUrl"> {{rowUrl.nombre}} </td>
+        </ng-container>
+  
+    
+        <ng-container matColumnDef="url">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Url </th>
+          <td mat-cell *matCellDef="let rowUrl"> {{rowUrl.url}} </td>
+        </ng-container>
+  
+    
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+          <td mat-cell *matCellDef="let rowUrl"> {{rowUrl.fecha}} </td>
+        </ng-container>
         
-        </td>
-      </ng-container>
-
-      <tr mat-header-row *matHeaderRowDef="displayedColumnsVersion"></tr>
-      <tr mat-row *matRowDef="let rowVersion; columns: displayedColumnsVersion;"></tr>
-
-      <tr class="mat-row" *matNoDataRow>
-        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
-      </tr>
-
-    </table>
-
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Accion </th>
+          <td mat-cell *matCellDef="let rowUrl"> 
+          <button mat-icon-button color="primary" (click)="abrirEditFormUrl(rowUrl)">
+            <mat-icon>edit</mat-icon>
+          </button>
+  
+          <button mat-icon-button color="warn" (click)="deleteUrl(rowUrl._id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+          
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsUrl"></tr>
+        <tr mat-row *matRowDef="let rowUrl; columns: displayedColumnsUrl;"></tr>
+  
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No hay datos que coincidan con el filtro "{{inputUrl.value}}"</td>
+        </tr>
+  
+      </table>
+  
+      
+  
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of Urls"></mat-paginator>
+      
+      <br>
+  
+      <h2>Version</h2>
+      <mat-form-field>
+        <mat-label>Buscar Version</mat-label>
+        <input matInput (keyup)="applyFilterVersion($event)" placeholder="Ex. Mia" #inputVersion>
+      </mat-form-field>
+  
+      <table mat-table [dataSource]="dataSourceVersion" matSort>
+  
+        <!-- <ng-container matColumnDef="_id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Id </th>
+          <td mat-cell *matCellDef="let rowVersion"> {{rowVersion._id}} </td>
+        </ng-container> -->
+  
+  
+        <ng-container matColumnDef="nombre">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
+          <td mat-cell *matCellDef="let rowVersion"> {{rowVersion.nombre}} </td>
+        </ng-container>
+  
     
-
-    <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of users"></mat-paginator>
+        <ng-container matColumnDef="version">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Version </th>
+          <td mat-cell *matCellDef="let rowVersion"> {{rowVersion.version}} </td>
+        </ng-container>
+  
     
-
+        <ng-container matColumnDef="fecha">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+          <td mat-cell *matCellDef="let rowVersion"> {{rowVersion.fecha}} </td>
+        </ng-container>
+        
+        <ng-container matColumnDef="action">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Accion </th>
+          <td mat-cell *matCellDef="let rowVersion"> 
+          <button mat-icon-button color="primary" (click)="abrirEditFormVersion(rowVersion)">
+            <mat-icon>edit</mat-icon>
+          </button>
+  
+          <button mat-icon-button color="warn" (click)="deleteVersion(rowVersion._id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+          
+          </td>
+        </ng-container>
+  
+        <tr mat-header-row *matHeaderRowDef="displayedColumnsVersion"></tr>
+        <tr mat-row *matRowDef="let rowVersion; columns: displayedColumnsVersion;"></tr>
+  
+        <tr class="mat-row" *matNoDataRow>
+          <td class="mat-cell" colspan="4">No hay datos que coincidan con el filtro "{{inputVersion.value}}"</td>
+        </tr>
+  
+      </table>
+  
+      
+  
+      <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page of Versions"></mat-paginator>
+      
+  
+    </div>
+  
   </div>
 
-</div>
+</ng-container>
+
+<app-login *ngIf="!loginService.isAuthenticated()"></app-login>
+
+
+
 
 

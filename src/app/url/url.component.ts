@@ -20,6 +20,7 @@ export class UrlComponent implements OnInit {
   }
   ngOnInit(): void {
     this.urlForm.patchValue(this.data);
+    
   }
   onFormSubmit(){
     if(this.urlForm.valid){
