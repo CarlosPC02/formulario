@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { UrlService } from '../services/url.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { CoreService } from '../core/core.service';
 
 @Component({
   selector: 'app-url',
@@ -11,7 +12,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class UrlComponent implements OnInit {
   urlForm: FormGroup;
 
-  constructor(private _fb: FormBuilder, private _urlService : UrlService, private _dialogRef: MatDialogRef<UrlComponent>, @Inject(MAT_DIALOG_DATA) public data:any){
+  constructor(private _coreService: CoreService, private _fb: FormBuilder, private _urlService : UrlService, private _dialogRef: MatDialogRef<UrlComponent>, @Inject(MAT_DIALOG_DATA) public data:any){
     this.urlForm = this._fb.group({
       nombre : '',
       url: ''
@@ -27,7 +28,7 @@ export class UrlComponent implements OnInit {
       if(this.data){
         this._urlService.updateUrl(this.data._id, this.urlForm.value).subscribe({
           next: (val: any)=>{
-            alert('Url Editada!');
+            this._coreService.openSnackBar('Url Editada!');
             this._dialogRef.close(true);
           },
           error: (err: any) =>{
@@ -37,12 +38,11 @@ export class UrlComponent implements OnInit {
       }else{
         this._urlService.createUrl(this.urlForm.value).subscribe({
           next: (val: any)=>{
-            alert('Url Creada con exito');
+            this._coreService.openSnackBar('Url Creada con exito!');
             this._dialogRef.close(true);
           },
           error: (err: any) =>{
             console.error(err);
-            
           }
         });
       }

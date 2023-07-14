@@ -8,6 +8,7 @@ import { LoginService } from './services/login.service';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
+import { CoreService } from './core/core.service';
 
 @Component({
   selector: 'app-root',
@@ -27,7 +28,7 @@ export class AppComponent implements OnInit{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private _dialog: MatDialog, private _urlService: UrlService, private _versionService: VersionService, public loginService: LoginService){
+  constructor(private _coreService: CoreService,private _dialog: MatDialog, private _urlService: UrlService, private _versionService: VersionService, public loginService: LoginService){
   }
 
   ngOnInit(): void {
@@ -76,7 +77,7 @@ export class AppComponent implements OnInit{
   deleteUrl(id: String){
     this._urlService.deleteUrl(id).subscribe({
       next:(res)=>{
-        alert('Url Eliminada!')
+        this._coreService.openSnackBar('Url Eliminada!', 'done');
         this.getUrlList();
       },
       error: console.log,
@@ -135,7 +136,7 @@ export class AppComponent implements OnInit{
   deleteVersion(id: String){
     this._versionService.deleteVersion(id).subscribe({
       next:(res)=>{
-        alert('Version Eliminada!')
+        this._coreService.openSnackBar('Url Version', 'done');
         this.getVersionList();
       },
       error: console.log,

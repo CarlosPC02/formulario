@@ -32,6 +32,7 @@ export class LoginComponent {
       localStorage.setItem('token', token);
       localStorage.setItem('name', name);
      // this.router.navigate([''])
+     location.reload();
     });
   }
 }

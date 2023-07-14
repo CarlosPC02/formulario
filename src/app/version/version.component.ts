@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { VersionService } from '../services/version.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { CoreService } from '../core/core.service';
 
 @Component({
   selector: 'app-version',
@@ -12,7 +13,7 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 export class VersionComponent implements OnInit {
   versionForm: FormGroup;
 
-  constructor(private _fb: FormBuilder, private _versionService : VersionService, private _dialogRef: MatDialogRef<VersionComponent>, @Inject(MAT_DIALOG_DATA) public data:any){
+  constructor(private _coreService: CoreService, private _fb: FormBuilder, private _versionService : VersionService, private _dialogRef: MatDialogRef<VersionComponent>, @Inject(MAT_DIALOG_DATA) public data:any){
     this.versionForm = this._fb.group({
       nombre : '',
       version: ''
@@ -27,7 +28,7 @@ export class VersionComponent implements OnInit {
       if(this.data){
         this._versionService.updateVersion(this.data._id, this.versionForm.value).subscribe({
           next: (val: any)=>{
-            alert('Version Editada!');
+            this._coreService.openSnackBar('Version Editada!');
             this._dialogRef.close(true);
           },
           error: (err: any) =>{
@@ -37,7 +38,7 @@ export class VersionComponent implements OnInit {
       }else{
         this._versionService.createVersion(this.versionForm.value).subscribe({
           next: (val: any)=>{
-            alert('Version Creada con exito');
+            this._coreService.openSnackBar('Version Creada con exito');
             this._dialogRef.close(true);
           },
           error: (err: any) =>{
