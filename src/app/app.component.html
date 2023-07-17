@@ -1,20 +1,41 @@
 <ng-container *ngIf="loginService.isAuthenticated()">
 
-  <mat-toolbar color="primary">
+
+  <mat-toolbar class="responsive-toolbar">
+    <div class="action">
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu">
+        <mat-icon>list</mat-icon>
+      </button>
+      <mat-menu #menu="matMenu">
+        <button mat-menu-item (click)="abrirFormUrl()">
+        Agregar Url
+        </button>
+        <button mat-menu-item (click)="abrirFormVersion()">
+        Agregar Version
+        </button>
+        <button mat-menu-item (click)="logout()">
+        Cerrar Sesion
+        </button>
+      </mat-menu>
+    </div>
     <span>Formularios</span>
     <span class="example-spacer"></span>
+  </mat-toolbar>
+  <!-- <mat-toolbar class="responsive-toolbar">
+    <span>Formularios</span>
+    <span class="example-spacer" ></span>
     <button mat-raised-button (click)="abrirFormUrl()">
-      Agregar Url
+      Url
     </button>
     <span class="button-separator"></span>
     <button mat-raised-button (click)="abrirFormVersion()">
-      Agregar Version
+      Version
     </button>
     <span class="button-separator"></span>
     <button mat-raised-button (click)="logout()">
       Cerrar Sesion
     </button> 
-  </mat-toolbar>
+  </mat-toolbar> -->
   
   <div class="main-body">
     <h2>Url</h2>

@@ -23,6 +23,9 @@ export class UrlComponent implements OnInit {
     this.urlForm.patchValue(this.data);
     
   }
+
+
+
   onFormSubmit(){
     if(this.urlForm.valid){
       if(this.data){

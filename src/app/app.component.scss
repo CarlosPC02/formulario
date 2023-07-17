@@ -32,15 +32,17 @@
 //   padding: 0;
 // }
 
-// /* Estilos para la barra de herramientas */
-// mat-toolbar {
-//   display: flex;
-//   justify-content: space-between;
-//   align-items: center;
-//   padding: 0 16px;
-//   background-color: #3f51b5;
-//   color: #fff;
-// }
+/* Estilos para la barra de herramientas */
+mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16px;
+  background-color: #2a3eaf;
+  color: #fff;
+}
+
+
 
 // /* Estilos para los botones en la barra de herramientas */
 // mat-toolbar button {
